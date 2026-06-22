@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viva Puerto Escondido 🐬 | Tours Premium & Hospedaje Frente al Mar</title>
+<meta name="description" content="Tours de delfines, ballenas y bioluminiscencia en Puerto Escondido. Hospedaje frente a la playa. Reserva ahora con garantía de avistamiento.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* ===== THEME TOKENS ===== */
+:root {
+  /* Dark mode (original) */
+  --midnight: #050E1A;
+  --deep: #0A1628;
+  --ocean: #0D2137;
+  --surface: #0A1628;
+  --surface-alt: #050E1A;
+  --card-bg: rgba(255,255,255,0.035);
+  --card-hover: rgba(0,201,177,0.08);
+  --text-primary: #FFFFFF;
+  --text-soft: rgba(255,255,255,0.78);
+  --text-muted: rgba(255,255,255,0.55);
+  --border: rgba(255,255,255,0.08);
+  --border-teal: rgba(0,201,177,0.25);
+  --hero-overlay: linear-gradient(135deg,rgba(5,14,26,0.96) 0%,rgba(5,14,26,0.75) 50%,rgba(5,14,26,0.88) 100%);
+  --scrollbar-track: #0A1628;
+
+  /* Brand */
+  --teal: #00C9B1;
+  --teal-dim: rgba(0,201,177,0.15);
+  --teal-glow: rgba(0,201,177,0.35);
+  --coral: #FF9F43;
+  --coral-dim: rgba(255,159,67,0.15);
+
+  --r-sm: 10px;
+  --r-md: 18px;
+  --r-lg: 28px;
+  --r-xl: 40px;
+  --shadow-teal: 0 0 40px rgba(0,201,177,0.2);
+  --shadow-card: 0 8px 40px rgba(0,0,0,0.45);
+  --transition: 0.3s cubic-bezier(.4,0,.2,1);
+  --transition-slow: 0.6s cubic-bezier(.4,0,.2,1);
+}
+
+/* ===== LIGHT MODE ===== */
+[data-theme="light"] {
+  --midnight: #F0F6FF;
+  --deep: #E4EEFA;
+  --ocean: #D6E8F8;
+  --surface: #E8F2FC;
+  --surface-alt: #F0F6FF;
+  --card-bg: rgba(255,255,255,0.75);
+  --card-hover: rgba(0,201,177,0.08);
+  --text-primary: #0A1628;
+  --text-soft: rgba(10,22,40,0.82);
+  --text-muted: rgba(10,22,40,0.55);
+  --border: rgba(10,22,40,0.1);
+  --border-teal: rgba(0,201,177,0.35);
+  --hero-overlay: linear-gradient(135deg,rgba(5,14,26,0.82) 0%,rgba(5,14,26,0.55) 50%,rgba(5,14,26,0.72) 100%);
+  --scrollbar-track: #E4EEFA;
+  --shadow-card: 0 8px 40px rgba(0,0,0,0.12);
+}
+
+/* ===== RESET ===== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--surface-alt);
+  color:var(--text-primary);
+  overflow-x:hidden;line-height:1.6;
+  transition:background 0.3s ease,color 0.3s ease;
+}
+h1,h2,h3,h4{font-family:'Syne',sans-serif;line-height:1.15;color:var(--text-primary)}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;height:auto;display:block}
+ul{list-style:none}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--scrollbar-track)}
+::-webkit-scrollbar-thumb{background:var(--teal);border-radius:3px}
+
+/* ===== THEME TOGGLE ===== */
+.theme-toggle{
+  display:flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border-radius:50%;
+  background:var(--teal-dim);border:1px solid var(--border-teal);
+  color:var(--teal);font-size:1rem;cursor:pointer;
+  transition:all var(--transition);flex-shrink:0;
+}
+.theme-toggle:hover{background:var(--teal);color:var(--midnight)}
+[data-theme="light"] .icon-moon{display:none}
+[data-theme="light"] .icon-sun{display:block}
+[data-theme="dark"] .icon-moon{display:block}
+[data-theme="dark"] .icon-sun{display:none}
+.icon-sun{display:none}
+.icon-moon{display:block}
+
+/* ===== HEADER ===== */
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:1000;
+  transition:all var(--transition);
+}
+header.scrolled{
+  background:rgba(5,14,26,0.94);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+[data-theme="light"] header.scrolled{
+  background:rgba(240,246,255,0.96);
+  border-bottom:1px solid rgba(10,22,40,0.1);
+}
+/* Light + scrolled: nav links */
+[data-theme="light"] header.scrolled nav ul li a{
+  color:rgba(10,22,40,0.75);
+}
+[data-theme="light"] header.scrolled nav ul li a:hover{
+  color:var(--teal);
+}
+/* Light + scrolled: hamburger lines */
+[data-theme="light"] header.scrolled .hamburger span{
+  background:#0A1628;
+}
+.nav-wrap{
+  max-width:1260px;margin:0 auto;
+  padding:18px 32px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.logo-group{display:flex;align-items:center;gap:14px}
+.logo-badge{
+  width:44px;height:44px;
+  background:linear-gradient(135deg,var(--teal),#00a896);
+  border-radius:var(--r-sm);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.15rem;color:#050E1A;
+  box-shadow:0 0 20px var(--teal-glow);
+  flex-shrink:0;
+}
+.logo-text-group .logo-nav-title{font-size:1.15rem;font-weight:700;color:#fff;margin:0;letter-spacing:-.01em;transition:color var(--transition)}
+header.scrolled .logo-nav-title{color:#fff}
+[data-theme="light"] header.scrolled .logo-nav-title{color:#0A1628 !important}
+.logo-text-group span{font-size:.72rem;color:var(--teal);font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+nav ul{display:flex;gap:28px;align-items:center}
+nav ul li a{
+  font-size:.85rem;font-weight:500;color:rgba(255,255,255,0.85);
+  letter-spacing:.03em;transition:color var(--transition);
+  position:relative;padding-bottom:2px;
+}
+header.scrolled nav ul li a{color:var(--text-soft)}
+nav ul li a::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:0;height:1.5px;background:var(--teal);
+  transition:width var(--transition);
+}
+nav ul li a:hover{color:var(--teal)}
+nav ul li a:hover::after{width:100%}
+.btn-nav-cta{
+  background:var(--teal);color:#050E1A!important;
+  padding:10px 22px;border-radius:var(--r-sm);
+  font-size:.82rem!important;font-weight:700!important;
+  display:flex;align-items:center;gap:8px;
+  transition:all var(--transition)!important;
+  box-shadow:0 0 20px var(--teal-glow);
+  white-space:nowrap;
+}
+.btn-nav-cta::after{display:none!important}
+.btn-nav-cta:hover{transform:translateY(-2px);box-shadow:0 0 32px var(--teal-glow)!important;color:#050E1A!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;z-index:1002}
+.hamburger span{display:block;width:24px;height:2px;background:var(--text-primary);border-radius:2px;transition:all var(--transition)}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-nav{
+  display:none;position:fixed;inset:0;z-index:999;
+  background:rgba(5,14,26,0.97);backdrop-filter:blur(24px);
+  flex-direction:column;align-items:center;justify-content:center;gap:36px;
+}
+[data-theme="light"] .mobile-nav{background:rgba(240,246,255,0.97)}
+.mobile-nav.open{display:flex}
+.mobile-nav a{font-family:'Syne',sans-serif;font-size:2rem;font-weight:700;color:var(--text-soft);transition:color var(--transition)}
+.mobile-nav a:hover{color:var(--teal)}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  position:relative;overflow:hidden;
+  padding-top:80px;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:url('https://images.unsplash.com/photo-1568430462989-44163eb1752f?w=1800&q=85&auto=format&fit=crop') center/cover no-repeat;
+}
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:var(--hero-overlay);
+}
+.particles{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.particle{
+  position:absolute;border-radius:50%;
+  background:var(--teal);
+  animation:drift linear infinite;
+  opacity:0;
+}
+@keyframes drift{
+  0%{transform:translateY(100vh) scale(0);opacity:0}
+  10%{opacity:.7}
+  90%{opacity:.4}
+  100%{transform:translateY(-10vh) scale(1.5);opacity:0}
+}
+.hero-inner{
+  position:relative;z-index:2;
+  max-width:1260px;margin:0 auto;
+  padding:0 32px;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--teal-dim);border:1px solid var(--border-teal);
+  padding:7px 18px;border-radius:50px;
+  font-size:.75rem;font-weight:600;color:var(--teal);
+  letter-spacing:.08em;text-transform:uppercase;margin-bottom:28px;
+}
+.hero-eyebrow span{width:6px;height:6px;border-radius:50%;background:var(--teal);display:block;animation:pulse-dot 2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+.hero h2{
+  font-size:clamp(2.4rem,5vw,3.8rem);
+  font-weight:800;color:#FFFFFF;
+  line-height:1.1;letter-spacing:-.03em;
+  margin-bottom:22px;
+}
+.hero h2 em{font-style:normal;color:var(--teal)}
+.hero-desc{
+  font-size:1rem;color:rgba(255,255,255,0.82);
+  max-width:480px;line-height:1.7;margin-bottom:36px;
+}
+.hero-trust{
+  display:flex;align-items:center;gap:20px;
+  margin-bottom:36px;flex-wrap:wrap;
+}
+.trust-item{
+  display:flex;align-items:center;gap:8px;
+  font-size:.82rem;color:rgba(255,255,255,0.7);font-weight:500;
+}
+.trust-item i{color:var(--teal);font-size:.9rem}
+.trust-divider{width:1px;height:20px;background:rgba(255,255,255,0.15)}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary-hero{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,#25D366,#128C7E);
+  color:#fff;font-family:'Syne',sans-serif;
+  font-size:.92rem;font-weight:700;padding:16px 30px;
+  border-radius:var(--r-sm);cursor:pointer;border:none;
+  box-shadow:0 0 30px rgba(37,211,102,0.4);
+  transition:all var(--transition);letter-spacing:.02em;
+}
+.btn-primary-hero:hover{transform:translateY(-3px);box-shadow:0 0 50px rgba(37,211,102,0.5)}
+.btn-secondary-hero{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,0.1);
+  color:#fff;font-family:'Syne',sans-serif;
+  font-size:.92rem;font-weight:600;padding:16px 30px;
+  border-radius:var(--r-sm);cursor:pointer;
+  border:1px solid rgba(255,255,255,0.2);
+  transition:all var(--transition);
+}
+.btn-secondary-hero:hover{border-color:var(--teal);color:var(--teal);background:var(--teal-dim)}
+.hero-scroll{
+  position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
+  z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:rgba(255,255,255,0.5);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;
+  animation:bounce-scroll 2s ease-in-out infinite;
+}
+@keyframes bounce-scroll{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+.scroll-line{width:1px;height:40px;background:linear-gradient(var(--teal),transparent)}
+
+/* ===== HERO RIGHT – SLIDER ===== */
+.hero-slider{
+  background:rgba(5,14,26,0.7);
+  backdrop-filter:blur(16px);
+  border:1px solid rgba(0,201,177,0.25);
+  border-radius:var(--r-lg);
+  overflow:hidden;
+  position:relative;
+}
+.slider-img{
+  width:100%;height:260px;
+  background-size:cover;background-position:center;
+  position:relative;transition:background-image 0s;
+}
+.slider-img-inner{
+  width:100%;height:260px;
+  object-fit:cover;display:block;
+  transition:opacity 0.5s ease;
+}
+.slider-img-wrap{position:relative;overflow:hidden;height:260px}
+.slider-img-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.6s ease}
+.slider-img-wrap img.active{opacity:1}
+.slider-img-wrap::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(5,14,26,1) 0%,transparent 55%);
+  z-index:1;pointer-events:none;
+}
+.slider-body{padding:24px 28px 28px}
+.slider-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  padding:4px 12px;border-radius:50px;margin-bottom:10px;
+}
+.slider-badge.popular{background:var(--coral);color:#050E1A}
+.slider-badge.magic{background:var(--teal);color:#050E1A}
+.slider-badge.family{background:#7B68EE;color:#fff}
+.slider-title{
+  font-family:'Syne',sans-serif;font-size:1.3rem;
+  font-weight:800;color:#fff;margin-bottom:6px;line-height:1.2;
+}
+.slider-desc{font-size:.83rem;color:rgba(255,255,255,0.72);margin-bottom:18px;line-height:1.6}
+.slider-price{
+  font-family:'Syne',sans-serif;font-size:1.8rem;
+  font-weight:800;color:var(--coral);
+}
+.slider-price-unit{font-size:.72rem;color:rgba(255,255,255,0.5);margin-top:2px}
+.slider-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.1);
+}
+.btn-slider-wa{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,#25D366,#128C7E);
+  color:#fff;font-size:.8rem;font-weight:700;font-family:'Syne',sans-serif;
+  padding:10px 18px;border-radius:var(--r-sm);
+  transition:all var(--transition);
+}
+.btn-slider-wa:hover{transform:translateY(-2px);box-shadow:0 0 20px rgba(37,211,102,0.4)}
+.slider-dots{
+  display:flex;gap:8px;align-items:center;
+}
+.slider-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:rgba(255,255,255,0.25);border:none;cursor:pointer;
+  transition:all var(--transition);padding:0;
+}
+.slider-dot.active{background:var(--teal);width:22px;border-radius:4px}
+.slider-arrows{
+  position:absolute;top:50%;right:14px;transform:translateY(-180%);
+  display:flex;gap:6px;z-index:2;
+}
+.slider-arrow{
+  width:32px;height:32px;border-radius:50%;
+  background:rgba(0,0,0,0.5);border:1px solid rgba(0,201,177,0.3);
+  color:var(--teal);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;transition:all var(--transition);
+}
+.slider-arrow:hover{background:var(--teal);color:#050E1A}
+
+/* ===== SECTION COMMON ===== */
+.section{padding:100px 0;position:relative}
+.section-dark{background:var(--deep)}
+.section-darker{background:var(--surface-alt)}
+.section-ocean{background:var(--ocean)}
+.container{max-width:1260px;margin:0 auto;padding:0 32px}
+.section-head{text-align:center;margin-bottom:64px}
+.section-eye{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.72rem;font-weight:600;color:var(--teal);
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;
+}
+.section-eye::before,.section-eye::after{
+  content:'';display:block;width:28px;height:1px;background:var(--teal);opacity:.5;
+}
+.section-head h2{
+  font-size:clamp(1.9rem,3.5vw,2.9rem);
+  font-weight:800;letter-spacing:-.025em;margin-bottom:16px;color:var(--text-primary);
+}
+.section-head p{font-size:1rem;color:var(--text-muted);max-width:520px;margin:0 auto}
+
+/* ===== TOURS ===== */
+.tours-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.tour-card{
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-radius:var(--r-md);
+  overflow:hidden;
+  transition:all var(--transition);
+  position:relative;
+  cursor:pointer;
+}
+.tour-card:hover{
+  transform:translateY(-8px);
+  border-color:var(--border-teal);
+  box-shadow:var(--shadow-teal),var(--shadow-card);
+}
+.tour-badge{
+  position:absolute;top:16px;left:16px;z-index:3;
+  background:var(--coral);color:#050E1A;
+  font-family:'Syne',sans-serif;font-size:.68rem;font-weight:700;
+  padding:5px 12px;border-radius:50px;letter-spacing:.06em;text-transform:uppercase;
+}
+.tour-badge.teal{background:var(--teal)}
+.tour-img{
+  height:200px;width:100%;
+  background-size:cover;background-position:center;
+  position:relative;
+}
+.tour-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(5,14,26,.95) 0%,transparent 55%);
+}
+.tour-body{padding:22px}
+.tour-name{
+  font-family:'Syne',sans-serif;font-size:1.1rem;
+  font-weight:700;color:var(--text-primary);margin-bottom:6px;
+}
+.tour-sub{font-size:.8rem;color:var(--text-muted);margin-bottom:16px}
+.tour-features-list{margin-bottom:20px}
+.tour-features-list li{
+  display:flex;align-items:center;gap:10px;
+  font-size:.82rem;color:var(--text-soft);margin-bottom:8px;
+}
+.tour-features-list li i{color:var(--teal);width:14px;font-size:.75rem}
+.tour-footer-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding-top:18px;border-top:1px solid var(--border);
+}
+.tour-price-block .price{
+  font-family:'Syne',sans-serif;font-size:1.7rem;
+  font-weight:800;color:var(--coral);line-height:1;
+}
+.tour-price-block .price-unit{font-size:.72rem;color:var(--text-muted);font-weight:400}
+.btn-tour{
+  display:inline-flex;align-items:center;gap:8px;
+  background:linear-gradient(135deg,#25D366,#128C7E);
+  color:#fff;font-size:.78rem;font-weight:700;font-family:'Syne',sans-serif;
+  padding:10px 18px;border-radius:var(--r-sm);
+  transition:all var(--transition);white-space:nowrap;
+}
+.btn-tour:hover{transform:translateY(-2px);box-shadow:0 0 20px rgba(37,211,102,0.4)}
+.deposit-notice{
+  text-align:center;margin-top:40px;
+  padding:18px 32px;
+  background:var(--coral-dim);border:1px solid rgba(255,159,67,0.25);
+  border-radius:var(--r-md);
+  font-size:.88rem;color:var(--coral);font-weight:600;
+  display:inline-block;
+}
+.deposit-notice i{margin-right:8px}
+.deposit-wrap{text-align:center}
+
+/* ===== HOTELS ===== */
+.hotels-intro-band{
+  background:linear-gradient(90deg,var(--teal-dim),transparent);
+  border:1px solid var(--border-teal);
+  border-radius:var(--r-md);
+  padding:24px 32px;
+  display:flex;align-items:center;gap:20px;
+  margin-bottom:56px;
+}
+.hotels-intro-band i{font-size:2rem;color:var(--teal);flex-shrink:0}
+.hotels-intro-band p{font-size:.95rem;color:var(--text-soft);max-width:680px}
+.hotels-intro-band strong{color:var(--teal)}
+.hotels-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.hotel-card{
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-radius:var(--r-md);
+  overflow:hidden;
+  transition:all var(--transition);
+}
+.hotel-card:hover{
+  border-color:var(--border-teal);
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-card);
+}
+.hotel-img{
+  height:180px;background-size:cover;background-position:center;
+  position:relative;transition:transform var(--transition-slow);
+}
+.hotel-card:hover .hotel-img{transform:scale(1.03)}
+.hotel-thumbs{
+  display:flex;gap:6px;padding:10px 14px;
+  background:rgba(5,14,26,0.8);
+}
+.h-thumb{
+  width:52px;height:36px;border-radius:6px;
+  background-size:cover;background-position:center;
+  border:1.5px solid transparent;cursor:pointer;
+  opacity:.65;transition:all var(--transition);
+  flex-shrink:0;
+}
+.h-thumb.active,.h-thumb:hover{border-color:var(--teal);opacity:1}
+.hotel-body{padding:20px}
+.hotel-name{
+  font-family:'Syne',sans-serif;font-size:1rem;
+  font-weight:700;color:var(--text-primary);margin-bottom:4px;
+}
+.hotel-price-row{
+  display:flex;align-items:baseline;gap:6px;margin-bottom:14px;
+}
+.hotel-price{
+  font-family:'Syne',sans-serif;font-size:1.6rem;
+  font-weight:800;color:var(--coral);
+}
+.hotel-price-unit{font-size:.75rem;color:var(--text-muted)}
+.hotel-amenities{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:8px;margin-bottom:18px;
+}
+.hotel-amenities li{
+  display:flex;align-items:center;gap:8px;
+  font-size:.78rem;color:var(--text-muted);
+}
+.hotel-amenities li i{color:var(--teal);width:14px;font-size:.7rem}
+.hotel-capacity{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.75rem;color:var(--teal);font-weight:600;
+  background:var(--teal-dim);padding:5px 12px;border-radius:50px;
+  border:1px solid var(--border-teal);margin-bottom:16px;
+}
+.btn-hotel{
+  width:100%;display:flex;align-items:center;justify-content:center;gap:8px;
+  background:transparent;border:1px solid rgba(37,211,102,0.3);
+  color:#25D366;font-size:.82rem;font-weight:700;font-family:'Syne',sans-serif;
+  padding:11px;border-radius:var(--r-sm);
+  transition:all var(--transition);cursor:pointer;
+}
+.btn-hotel:hover{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border-color:transparent;box-shadow:0 0 20px rgba(37,211,102,0.3)}
+
+/* ===== BIOLUMINISCENCIA ===== */
+.bio-section{
+  background:radial-gradient(ellipse at 50% 100%,rgba(0,201,177,0.1) 0%,transparent 70%),var(--surface-alt);
+}
+.bio-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.bio-visual{position:relative}
+.bio-img-wrap{
+  border-radius:var(--r-lg);overflow:hidden;
+  border:1px solid var(--border-teal);
+  box-shadow:var(--shadow-teal);
+  position:relative;
+}
+.bio-img-wrap img{width:100%;height:420px;object-fit:cover;display:block}
+.bio-img-wrap::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,201,177,0.25),transparent 60%);
+  z-index:1;pointer-events:none;
+}
+.bio-float-badge{
+  position:absolute;bottom:-20px;right:-20px;z-index:2;
+  background:var(--surface);border:1px solid var(--border-teal);
+  border-radius:var(--r-md);padding:18px 22px;
+  box-shadow:var(--shadow-teal);
+  text-align:center;min-width:130px;
+}
+.bio-float-badge .num{
+  font-family:'Syne',sans-serif;font-size:2rem;
+  font-weight:800;color:var(--teal);
+}
+.bio-float-badge .lbl{font-size:.72rem;color:var(--text-muted);font-weight:500}
+.bio-content h2{
+  font-size:clamp(1.8rem,3vw,2.6rem);
+  font-weight:800;letter-spacing:-.025em;margin-bottom:18px;
+}
+.bio-content h2 em{font-style:normal;color:var(--teal)}
+.bio-content p{font-size:.95rem;color:var(--text-soft);margin-bottom:28px;line-height:1.75}
+.bio-feat{
+  display:flex;align-items:flex-start;gap:16px;
+  padding:16px 0;border-bottom:1px solid var(--border);
+}
+.bio-feat:last-child{border-bottom:none}
+.bio-feat-icon{
+  width:40px;height:40px;border-radius:10px;
+  background:var(--teal-dim);border:1px solid var(--border-teal);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--teal);font-size:.95rem;flex-shrink:0;
+}
+.bio-feat-text h4{
+  font-family:'Syne',sans-serif;font-size:.9rem;
+  font-weight:700;color:var(--text-primary);margin-bottom:3px;
+}
+.bio-feat-text p{font-size:.8rem;color:var(--text-muted);margin:0}
+.bio-price-cta{
+  margin-top:36px;
+  background:linear-gradient(135deg,rgba(0,201,177,0.12),rgba(0,201,177,0.04));
+  border:1px solid var(--border-teal);
+  border-radius:var(--r-md);
+  padding:24px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.bio-price-cta .price{
+  font-family:'Syne',sans-serif;font-size:2.2rem;
+  font-weight:800;color:var(--teal);
+}
+.bio-price-cta .price-sub{font-size:.78rem;color:var(--text-muted);margin-top:2px}
+.btn-bio{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,#25D366,#128C7E);
+  color:#fff;font-family:'Syne',sans-serif;
+  font-size:.88rem;font-weight:700;padding:14px 24px;
+  border-radius:var(--r-sm);transition:all var(--transition);
+  white-space:nowrap;box-shadow:0 0 20px rgba(37,211,102,0.3);
+}
+.btn-bio:hover{transform:translateY(-2px);box-shadow:0 0 32px rgba(37,211,102,0.5)}
+
+/* ===== BEACHES ===== */
+.beaches-grid{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:16px;
+}
+.beach-card{
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  border-radius:var(--r-md);
+  overflow:hidden;
+  transition:all var(--transition);
+  cursor:pointer;
+  position:relative;
+}
+.beach-card:hover{border-color:var(--border-teal);transform:translateY(-6px);box-shadow:var(--shadow-teal)}
+.beach-vid-wrap{height:200px;position:relative;overflow:hidden;background:var(--deep)}
+.beach-vid-wrap video{width:100%;height:100%;object-fit:cover;opacity:.7}
+.beach-vid-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(5,14,26,.9) 0%,transparent 55%);
+  display:flex;align-items:center;justify-content:center;
+}
+.play-btn{
+  width:48px;height:48px;border-radius:50%;
+  background:rgba(0,201,177,0.2);border:1.5px solid var(--teal);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--teal);font-size:.9rem;
+  transition:all var(--transition);
+}
+.beach-card:hover .play-btn{background:var(--teal);color:#050E1A;transform:scale(1.1)}
+.beach-num{
+  position:absolute;top:12px;left:12px;z-index:2;
+  font-family:'Syne',sans-serif;font-size:.7rem;
+  font-weight:700;color:#050E1A;
+  background:var(--teal);padding:3px 10px;border-radius:50px;
+}
+.beach-body{padding:18px}
+.beach-title{
+  font-family:'Syne',sans-serif;font-size:.92rem;
+  font-weight:700;color:var(--text-primary);margin-bottom:6px;
+}
+.beach-desc{font-size:.78rem;color:var(--text-muted);line-height:1.6}
+.beach-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.beach-tag{
+  font-size:.68rem;color:var(--teal);font-weight:600;
+  background:var(--teal-dim);padding:3px 10px;border-radius:50px;
+  border:1px solid var(--border-teal);
+}
+.beaches-cta-row{
+  margin-top:48px;
+  background:linear-gradient(135deg,rgba(0,201,177,0.08),rgba(0,201,177,0.02));
+  border:1px solid var(--border-teal);
+  border-radius:var(--r-lg);
+  padding:40px 48px;
+  display:flex;align-items:center;justify-content:space-between;gap:32px;
+}
+.beaches-cta-row h3{
+  font-family:'Syne',sans-serif;font-size:1.5rem;
+  font-weight:800;color:var(--text-primary);letter-spacing:-.02em;
+}
+.beaches-cta-row p{font-size:.9rem;color:var(--text-muted);margin-top:8px;max-width:480px}
+.cta-btn-group{display:flex;gap:12px;flex-wrap:wrap}
+.btn-cta-wa{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,#25D366,#128C7E);
+  color:#fff;font-family:'Syne',sans-serif;
+  font-size:.88rem;font-weight:700;padding:14px 26px;
+  border-radius:var(--r-sm);transition:all var(--transition);
+  box-shadow:0 0 20px rgba(37,211,102,0.3);
+}
+.btn-cta-wa:hover{transform:translateY(-2px);box-shadow:0 0 36px rgba(37,211,102,0.5)}
+.btn-cta-ghost{
+  display:inline-flex;align-items:center;gap:10px;
+  background:transparent;border:1px solid var(--border);
+  color:var(--text-soft);font-family:'Syne',sans-serif;
+  font-size:.88rem;font-weight:600;padding:14px 26px;
+  border-radius:var(--r-sm);transition:all var(--transition);
+}
+.btn-cta-ghost:hover{border-color:var(--teal);color:var(--teal)}
+
+/* ===== GALLERY UNIFORM GRID 3x2 ===== */
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  grid-template-rows:repeat(2,280px);
+  gap:16px;
+}
+.g-item{
+  border-radius:var(--r-md);overflow:hidden;
+  position:relative;cursor:pointer;
+  background:var(--deep);
+}
+.g-item img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform var(--transition-slow);
+  display:block;
+}
+.g-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(5,14,26,.85),transparent 50%);
+  opacity:0;transition:opacity var(--transition);
+  display:flex;align-items:flex-end;padding:20px;
+}
+.g-item:hover .g-overlay{opacity:1}
+.g-item:hover img{transform:scale(1.06)}
+.g-overlay p{color:#fff;font-family:'Syne',sans-serif;font-size:.88rem;font-weight:600}
+
+/* ===== WHALE CTA BANNER ===== */
+.whale-cta{
+  position:relative;
+  overflow:hidden;
+  border-radius:var(--r-xl);
+  margin:80px 0 0;
+  min-height:340px;
+  display:flex;align-items:center;
+  isolation:isolate;
+}
+.whale-cta-bg{
+  position:absolute;inset:0;z-index:0;
+  background:url('https://images.unsplash.com/photo-1568430462989-44163eb1752f?w=1400&q=80&auto=format&fit=crop') center/cover no-repeat;
+  filter:brightness(0.45) saturate(1.2);
+  transition:transform var(--transition-slow);
+}
+.whale-cta:hover .whale-cta-bg{transform:scale(1.03)}
+/* Subtle grain texture overlay */
+.whale-cta-texture{
+  position:absolute;inset:0;z-index:1;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
+  background-repeat:repeat;
+  mix-blend-mode:overlay;
+  pointer-events:none;
+}
+.whale-cta-gradient{
+  position:absolute;inset:0;z-index:2;
+  background:linear-gradient(90deg,rgba(0,201,177,0.45) 0%,rgba(5,14,26,0.6) 60%,rgba(5,14,26,0.85) 100%);
+}
+.whale-cta-content{
+  position:relative;z-index:3;
+  max-width:1260px;margin:0 auto;padding:60px 48px;
+  display:flex;align-items:center;justify-content:space-between;gap:40px;
+  width:100%;
+}
+.whale-cta-left{}
+.whale-cta-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(0,201,177,0.2);border:1px solid rgba(0,201,177,0.4);
+  padding:6px 16px;border-radius:50px;
+  font-size:.72rem;font-weight:700;color:var(--teal);
+  letter-spacing:.1em;text-transform:uppercase;margin-bottom:18px;
+}
+.whale-cta-title{
+  font-family:'Syne',sans-serif;font-size:clamp(1.8rem,3.5vw,2.6rem);
+  font-weight:800;color:#fff;letter-spacing:-.03em;
+  line-height:1.1;margin-bottom:14px;
+}
+.whale-cta-title em{font-style:normal;color:var(--teal)}
+.whale-cta-sub{font-size:.95rem;color:rgba(255,255,255,0.75);max-width:440px;line-height:1.7}
+.whale-cta-right{flex-shrink:0;text-align:center}
+.whale-icon{
+  font-size:3.5rem;margin-bottom:12px;
+  color:var(--teal);
+  filter:drop-shadow(0 0 24px rgba(0,201,177,0.6));
+  display:block;line-height:1;
+}
+.whale-cta-price{
+  font-family:'Syne',sans-serif;font-size:2.4rem;font-weight:800;color:var(--coral);
+}
+.whale-cta-price-label{font-size:.78rem;color:rgba(255,255,255,0.55);margin-bottom:20px}
+.btn-whale-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,#25D366,#128C7E);
+  color:#fff;font-family:'Syne',sans-serif;
+  font-size:.95rem;font-weight:700;padding:16px 32px;
+  border-radius:var(--r-sm);transition:all var(--transition);
+  box-shadow:0 0 30px rgba(37,211,102,0.4);white-space:nowrap;
+}
+.btn-whale-cta:hover{transform:translateY(-3px);box-shadow:0 0 50px rgba(37,211,102,0.6)}
+
+/* ===== HOW TO BOOK ===== */
+.steps-row{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:32px;
+  position:relative;
+}
+.steps-row::before{
+  content:'';position:absolute;top:40px;left:calc(16.666% + 20px);
+  width:calc(66.666% - 40px);height:1px;
+  background:linear-gradient(90deg,var(--teal),transparent,var(--teal));
+  opacity:.3;
+}
+.step-box{text-align:center;padding:36px 24px}
+.step-num{
+  width:64px;height:64px;border-radius:50%;
+  background:linear-gradient(135deg,var(--teal),#009e8e);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;
+  color:#050E1A;margin:0 auto 24px;
+  box-shadow:0 0 24px var(--teal-glow);
+}
+.step-box h3{
+  font-family:'Syne',sans-serif;font-size:1.05rem;
+  font-weight:700;color:var(--text-primary);margin-bottom:10px;
+}
+.step-box p{font-size:.85rem;color:var(--text-muted);line-height:1.7}
+.step-box a{display:inline-block;margin-top:18px}
+
+/* ===== FLOATING WA ===== */
+.wa-float{position:fixed;bottom:32px;right:32px;z-index:998;}
+.wa-float a{
+  display:flex;align-items:center;justify-content:center;
+  width:62px;height:62px;border-radius:50%;
+  background:linear-gradient(135deg,#25D366,#128C7E);
+  color:#fff;font-size:1.7rem;
+  box-shadow:0 0 0 0 rgba(37,211,102,0.5);
+  animation:wa-pulse 2.5s ease-in-out infinite;
+  transition:transform var(--transition);
+}
+.wa-float a:hover{transform:scale(1.1)}
+@keyframes wa-pulse{
+  0%{box-shadow:0 0 0 0 rgba(37,211,102,0.5)}
+  70%{box-shadow:0 0 0 18px rgba(37,211,102,0)}
+  100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}
+}
+.wa-label{
+  position:absolute;right:72px;top:50%;transform:translateY(-50%);
+  background:var(--surface);border:1px solid var(--border);
+  padding:8px 14px;border-radius:var(--r-sm);
+  white-space:nowrap;font-size:.78rem;font-weight:600;color:var(--text-primary);
+  opacity:0;pointer-events:none;transition:opacity var(--transition);
+  box-shadow:var(--shadow-card);
+}
+.wa-float:hover .wa-label{opacity:1}
+
+/* ===== FOOTER ===== */
+footer{
+  background:var(--deep);
+  border-top:1px solid var(--border);
+  padding:72px 0 40px;
+}
+.footer-grid{
+  display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:60px;
+  margin-bottom:56px;
+}
+.footer-logo{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.footer-brand p{font-size:.88rem;color:var(--text-muted);line-height:1.75;max-width:300px;margin-bottom:24px}
+.footer-socials{display:flex;gap:10px}
+.footer-socials a{
+  width:38px;height:38px;border-radius:8px;
+  background:var(--border);display:flex;align-items:center;justify-content:center;
+  color:var(--text-muted);font-size:.9rem;transition:all var(--transition);
+}
+.footer-socials a:hover{background:var(--teal);color:#050E1A}
+.footer-col h4{
+  font-family:'Syne',sans-serif;font-size:.92rem;
+  font-weight:700;color:var(--text-primary);margin-bottom:20px;
+  padding-bottom:12px;border-bottom:1px solid var(--border);
+}
+.footer-col ul li{margin-bottom:12px}
+.footer-col ul li a{
+  font-size:.85rem;color:var(--text-muted);
+  transition:color var(--transition);display:flex;align-items:center;gap:8px;
+}
+.footer-col ul li a i{color:var(--teal);font-size:.7rem}
+.footer-col ul li a:hover{color:var(--teal)}
+.contact-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;}
+.contact-row i{color:var(--teal);margin-top:3px;width:16px;font-size:.85rem}
+.contact-row p{font-size:.85rem;color:var(--text-muted);line-height:1.6}
+.contact-row strong{color:var(--text-soft)}
+.footer-bottom{
+  padding-top:28px;border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:12px;
+}
+.footer-bottom p{font-size:.78rem;color:var(--text-muted)}
+
+/* ===== VIDEO MODAL ===== */
+.v-modal{
+  display:none;position:fixed;inset:0;z-index:2000;
+  background:rgba(0,0,0,0.92);
+  justify-content:center;align-items:center;padding:32px;
+}
+.v-modal.active{display:flex}
+.v-modal-inner{max-width:900px;width:100%;border-radius:var(--r-md);overflow:hidden;position:relative;}
+.v-modal-inner video{width:100%;display:block;max-height:80vh}
+.v-modal-close{
+  position:fixed;top:24px;right:24px;z-index:2001;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);
+  color:#fff;font-size:1.2rem;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all var(--transition);
+}
+.v-modal-close:hover{background:var(--coral);border-color:var(--coral)}
+
+/* ===== REVEAL ANIMATIONS ===== */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-24px);transition:opacity .65s ease,transform .65s ease}
+.reveal-left.visible{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(24px);transition:opacity .65s ease,transform .65s ease}
+.reveal-right.visible{opacity:1;transform:none}
+
+/* ===== MEDIA QUERIES ===== */
+@media(max-width:1100px){
+  .hero-inner{grid-template-columns:1fr;gap:48px}
+  .tours-grid{grid-template-columns:repeat(2,1fr)}
+  .hotels-grid{grid-template-columns:repeat(2,1fr)}
+  .beaches-grid{grid-template-columns:repeat(3,1fr)}
+  .bio-grid{grid-template-columns:1fr;gap:48px}
+  .bio-visual{max-width:500px;margin:0 auto}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:40px}
+  .footer-brand{grid-column:span 2}
+  .gallery-grid{grid-template-rows:repeat(2,220px)}
+  .whale-cta-content{flex-direction:column;text-align:center}
+  .whale-cta-sub{margin:0 auto}
+}
+@media(max-width:768px){
+  nav ul{display:none}
+  .hamburger{display:flex}
+  .hero-inner{padding:0 20px}
+  .hero h2{font-size:2rem}
+  .container{padding:0 20px}
+  .section{padding:72px 0}
+  .tours-grid,.hotels-grid,.beaches-grid{grid-template-columns:1fr}
+  .steps-row{grid-template-columns:1fr;gap:24px}
+  .steps-row::before{display:none}
+  .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,200px)}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-brand{grid-column:span 1}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .beaches-cta-row{flex-direction:column;padding:28px 24px;text-align:center}
+  .bio-price-cta{flex-direction:column;gap:16px;text-align:center}
+  .hotels-intro-band{flex-direction:column;text-align:center}
+  .nav-wrap{padding:14px 20px}
+  .whale-cta-content{padding:40px 28px}
+  .whale-cta-title{font-size:1.6rem}
+}
+@media(max-width:480px){
+  .gallery-grid{grid-template-columns:1fr;grid-template-rows:none}
+  .hero-ctas{flex-direction:column}
+  .hero-ctas a{justify-content:center}
+  .beaches-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header id="header">
+  <div class="nav-wrap">
+    <div class="logo-group">
+      <div class="logo-badge"><i class="fas fa-anchor"></i></div>
+      <div class="logo-text-group">
+        <h1 class="logo-nav-title" style="font-size:1.15rem;font-weight:700;color:#fff;margin:0;letter-spacing:-.01em">Viva Puerto Escondido</h1>
+        <span>Tours Premium &amp; Hospedaje</span>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#tours">Tours</a></li>
+        <li><a href="#hospedaje">Hospedaje</a></li>
+        <li><a href="#bioluminiscencia">Bioluminiscencia</a></li>
+        <li><a href="#playas">Playas</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li>
+          <button class="theme-toggle" id="themeToggle" title="Cambiar tema">
+            <i class="fas fa-moon icon-moon"></i>
+            <i class="fas fa-sun icon-sun"></i>
+          </button>
+        </li>
+        <li><a href="https://wa.me/+5219541327997?text=Hola,%20quiero%20reservar%20un%20tour%20en%20Puerto%20Escondido%20🐬" target="_blank" class="btn-nav-cta"><i class="fab fa-whatsapp"></i> Reservar ahora</a></li>
+      </ul>
+    </nav>
+    <div style="display:flex;align-items:center;gap:10px">
+      <button class="theme-toggle" id="themeToggleMobile" title="Cambiar tema" style="display:none">
+        <i class="fas fa-moon icon-moon"></i>
+        <i class="fas fa-sun icon-sun"></i>
+      </button>
+      <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#tours" class="nav-link-m">Tours</a>
+  <a href="#hospedaje" class="nav-link-m">Hospedaje</a>
+  <a href="#bioluminiscencia" class="nav-link-m">Bioluminiscencia</a>
+  <a href="#playas" class="nav-link-m">Playas</a>
+  <a href="#galeria" class="nav-link-m">Galería</a>
+  <a href="https://wa.me/+5219541327997" target="_blank" style="color:var(--teal);font-size:1.4rem"><i class="fab fa-whatsapp"></i> Reservar</a>
+</div>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="particles" id="particles"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow"><span></span> Puerto Escondido, Oaxaca</div>
+      <h2>Vive el mar<br>de una forma<br><em>diferente</em></h2>
+      <p class="hero-desc">Tours con delfines y ballenas con <strong style="color:#fff">garantía de avistamiento</strong>, bioluminiscencia nocturna y hospedaje frente a la playa principal. Todo en un solo lugar.</p>
+      <div class="hero-trust">
+        <div class="trust-item"><i class="fas fa-shield-alt"></i> Avistamiento garantizado</div>
+        <div class="trust-divider"></div>
+        <div class="trust-item"><i class="fas fa-star"></i> +500 familias felices</div>
+        <div class="trust-divider"></div>
+        <div class="trust-item"><i class="fas fa-clock"></i> Reserva en 5 min</div>
+      </div>
+      <div class="hero-ctas">
+        <a href="https://wa.me/+5219541327997?text=Hola,%20quiero%20reservar%20un%20tour%20en%20Puerto%20Escondido%20🐬" target="_blank" class="btn-primary-hero">
+          <i class="fab fa-whatsapp"></i> Reservar por WhatsApp
+        </a>
+        <a href="#tours" class="btn-secondary-hero">
+          Ver todos los tours <i class="fas fa-arrow-down"></i>
+        </a>
+      </div>
+    </div>
+
+    <!-- Hero Right: Tour Slider -->
+    <div class="hero-right">
+      <div class="hero-slider" id="heroSlider">
+        <!-- Image wrapper -->
+        <div class="slider-img-wrap">
+          <img class="active" src="https://puertoescondidomex.com/wp-content/uploads/2026/02/24330-2.jpg" alt="Tour Delfines">
+          <img src="https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-25-at-3.22.16-PM-2.jpeg" alt="Tortugas y Playas">
+          <img src="https://puertoescondidomex.com/wp-content/uploads/2026/02/1355-1.jpg" alt="Pesca Deportiva">
+        </div>
+        <!-- Arrows -->
+        <div class="slider-arrows">
+          <button class="slider-arrow" id="sliderPrev"><i class="fas fa-chevron-left"></i></button>
+          <button class="slider-arrow" id="sliderNext"><i class="fas fa-chevron-right"></i></button>
+        </div>
+        <!-- Body -->
+        <div class="slider-body" id="sliderBody">
+          <!-- Content injected by JS -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- Tours -->
+<section class="section section-dark" id="tours">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-eye">Nuestros tours</div>
+      <h2>Elige tu aventura</h2>
+      <p>Cada tour es una experiencia diseñada para que te lleves recuerdos de por vida.</p>
+    </div>
+    <div class="tours-grid">
+      <div class="tour-card reveal">
+        <div class="tour-badge">Más popular</div>
+        <div class="tour-img" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/24330-2.jpg')"></div>
+        <div class="tour-body">
+          <div class="tour-name">Tour Delfines</div>
+          <div class="tour-sub">Avistamiento 100% garantizado en mar abierto</div>
+          <ul class="tour-features-list">
+            <li><i class="fas fa-check-circle"></i> 2–3 horas · Salidas diarias</li>
+            <li><i class="fas fa-check-circle"></i> Guía certificado a bordo</li>
+            <li><i class="fas fa-check-circle"></i> Fotos y video incluidos</li>
+            <li><i class="fas fa-check-circle"></i> Equipo de seguridad completo</li>
+          </ul>
+          <div class="tour-footer-inner">
+            <div class="tour-price-block"><div class="price">$700</div><div class="price-unit">MXN por persona</div></div>
+            <a href="https://wa.me/+5219541327997?text=Hola,%20quiero%20reservar%20el%20Tour%20Delfines%20de%20$700%20MXN" target="_blank" class="btn-tour"><i class="fab fa-whatsapp"></i> Reservar</a>
+          </div>
+        </div>
+      </div>
+      <div class="tour-card reveal">
+        <div class="tour-badge teal">Mágico</div>
+        <div class="tour-img" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/35216-1.jpg')"></div>
+        <div class="tour-body">
+          <div class="tour-name">Tour Bioluminiscencia</div>
+          <div class="tour-sub">Experiencia nocturna única en México</div>
+          <ul class="tour-features-list">
+            <li><i class="fas fa-check-circle"></i> 2–3 horas · Solo nocturno</li>
+            <li><i class="fas fa-check-circle"></i> Plancton luminiscente visible</li>
+            <li><i class="fas fa-check-circle"></i> Chaleco salvavidas incluido</li>
+            <li><i class="fas fa-check-circle"></i> Guía especializado</li>
+          </ul>
+          <div class="tour-footer-inner">
+            <div class="tour-price-block"><div class="price">$750</div><div class="price-unit">MXN por persona</div></div>
+            <a href="https://wa.me/+5219541327997?text=Hola,%20quiero%20reservar%20el%20Tour%20Bioluminiscencia%20de%20$750%20MXN" target="_blank" class="btn-tour"><i class="fab fa-whatsapp"></i> Reservar</a>
+          </div>
+        </div>
+      </div>
+      <div class="tour-card reveal">
+        <div class="tour-badge" style="background:var(--teal)">Familiar</div>
+        <div class="tour-img" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-25-at-3.22.16-PM-2.jpeg')"></div>
+        <div class="tour-body">
+          <div class="tour-name">Tortugas y Playas</div>
+          <div class="tour-sub">5 playas + avistamiento de tortugas marinas</div>
+          <ul class="tour-features-list">
+            <li><i class="fas fa-check-circle"></i> 1.5 horas · 1–5 personas</li>
+            <li><i class="fas fa-check-circle"></i> Tortugas en hábitat natural</li>
+            <li><i class="fas fa-check-circle"></i> 5 playas espectaculares</li>
+            <li><i class="fas fa-check-circle"></i> Perfecto para familias</li>
+          </ul>
+          <div class="tour-footer-inner">
+            <div class="tour-price-block"><div class="price">$2,000</div><div class="price-unit">MXN · 1–5 personas</div></div>
+            <a href="https://wa.me/+5219541327997?text=Hola,%20quiero%20reservar%20Tour%20Tortugas%20y%20Playas%20$2,000%20MXN" target="_blank" class="btn-tour"><i class="fab fa-whatsapp"></i> Reservar</a>
+          </div>
+        </div>
+      </div>
+      <div class="tour-card reveal">
+        <div class="tour-badge" style="background:#7B68EE">Exploración</div>
+        <div class="tour-img" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-25-at-3.22.23-PM-1-1-1.jpeg')"></div>
+        <div class="tour-body">
+          <div class="tour-name">Tour Playas</div>
+          <div class="tour-sub">Recorrido por las playas más bellas</div>
+          <ul class="tour-features-list">
+            <li><i class="fas fa-check-circle"></i> 1 hora · 1–5 personas</li>
+            <li><i class="fas fa-check-circle"></i> Playas principales</li>
+            <li><i class="fas fa-check-circle"></i> Fotos panorámicas</li>
+            <li><i class="fas fa-check-circle"></i> Guía local experto</li>
+          </ul>
+          <div class="tour-footer-inner">
+            <div class="tour-price-block"><div class="price">$1,500</div><div class="price-unit">MXN · 1–5 personas</div></div>
+            <a href="https://wa.me/+5219541327997?text=Hola,%20quiero%20reservar%20Tour%20Playas%20$1,500%20MXN" target="_blank" class="btn-tour"><i class="fab fa-whatsapp"></i> Reservar</a>
+          </div>
+        </div>
+      </div>
+      <div class="tour-card reveal">
+        <div class="tour-badge" style="background:#FF6B35">Pesca</div>
+        <div class="tour-img" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/2149862572-1.jpg')"></div>
+        <div class="tour-body">
+          <div class="tour-name">Pesca Deportiva 3h</div>
+          <div class="tour-sub">3 horas de adrenalina en alta mar</div>
+          <ul class="tour-features-list">
+            <li><i class="fas fa-check-circle"></i> 3 horas · 1–5 personas</li>
+            <li><i class="fas fa-check-circle"></i> Equipo profesional</li>
+            <li><i class="fas fa-check-circle"></i> Guía pescador experto</li>
+            <li><i class="fas fa-check-circle"></i> Todo incluido</li>
+          </ul>
+          <div class="tour-footer-inner">
+            <div class="tour-price-block"><div class="price">$6,000</div><div class="price-unit">MXN · 1–5 personas</div></div>
+            <a href="https://wa.me/+5219541327997?text=Hola,%20quiero%20reservar%20Pesca%20Deportiva%203h%20$6,000%20MXN" target="_blank" class="btn-tour"><i class="fab fa-whatsapp"></i> Reservar</a>
+          </div>
+        </div>
+      </div>
+      <div class="tour-card reveal">
+        <div class="tour-badge" style="background:var(--coral)">Premium</div>
+        <div class="tour-img" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/1355-1.jpg')"></div>
+        <div class="tour-body">
+          <div class="tour-name">Pesca Deportiva 5h</div>
+          <div class="tour-sub">Posibilidad de capturar marlín en alta mar</div>
+          <ul class="tour-features-list">
+            <li><i class="fas fa-check-circle"></i> 5 horas · 1–5 personas</li>
+            <li><i class="fas fa-check-circle"></i> Equipo premium</li>
+            <li><i class="fas fa-check-circle"></i> Posibilidad de marlín</li>
+            <li><i class="fas fa-check-circle"></i> Experiencia completa</li>
+          </ul>
+          <div class="tour-footer-inner">
+            <div class="tour-price-block"><div class="price">$7,000</div><div class="price-unit">MXN · 1–5 personas</div></div>
+            <a href="https://wa.me/+5219541327997?text=Hola,%20quiero%20reservar%20Pesca%20Deportiva%205h%20$7,000%20MXN" target="_blank" class="btn-tour"><i class="fab fa-whatsapp"></i> Reservar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="deposit-wrap reveal" style="margin-top:40px">
+      <div class="deposit-notice">
+        <i class="fas fa-lock"></i> Reserva tu lugar con solo <strong>$200 MXN</strong> de depósito por persona · El resto se paga el día del tour
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Hotels -->
+<section class="section section-darker" id="hospedaje">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-eye">Hospedaje</div>
+      <h2>Frente a la playa principal</h2>
+      <p>6 tipos de habitación. Todas con vistas al mar, WiFi de alta velocidad y amenidades modernas.</p>
+    </div>
+    <div class="hotels-intro-band reveal">
+      <i class="fas fa-map-marker-alt"></i>
+      <p><strong>Ubicación privilegiada:</strong> A pasos de la arena. Al despertar, el mar es lo primero que ves. Disfruta acceso directo a la playa principal de Puerto Escondido sin tomar ningún transporte.</p>
+    </div>
+    <div class="hotels-grid">
+      <div class="hotel-card reveal">
+        <div class="hotel-img" id="himg1" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-26-at-11.11.08-PM.jpeg');"></div>
+        <div class="hotel-thumbs">
+          <div class="h-thumb active" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-26-at-11.11.08-PM.jpeg')" data-target="himg1"></div>
+          <div class="h-thumb" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-26-at-11.11.08-PM-1.jpeg')" data-target="himg1"></div>
+          <div class="h-thumb" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-26-at-11.11.08-PM-2.jpeg')" data-target="himg1"></div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-name">Cama Matrimonial</div>
+          <div class="hotel-price-row"><div class="hotel-price">$700</div><div class="hotel-price-unit">MXN / noche</div></div>
+          <div class="hotel-capacity"><i class="fas fa-user"></i> 1–2 personas</div>
+          <ul class="hotel-amenities">
+            <li><i class="fas fa-bed"></i> Cama matrimonial</li>
+            <li><i class="fas fa-bath"></i> Baño privado</li>
+            <li><i class="fas fa-tv"></i> TV por cable</li>
+            <li><i class="fas fa-wifi"></i> WiFi</li>
+            <li><i class="fas fa-fan"></i> Ventilador</li>
+            <li><i class="fas fa-water"></i> Vista al mar</li>
+          </ul>
+          <a href="https://wa.me/+5219541327997?text=Hola,%20quiero%20reservar%20la%20habitación%20Matrimonial%20$700%20MXN" target="_blank" class="btn-hotel"><i class="fab fa-whatsapp"></i> Reservar habitación</a>
+        </div>
+      </div>
+      <div class="hotel-card reveal">
+        <div class="hotel-img" id="himg2" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-26-at-11.11.29-PM.jpeg');"></div>
+        <div class="hotel-thumbs">
+          <div class="h-thumb active" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-26-at-11.11.29-PM.jpeg')" data-target="himg2"></div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-name">2 Camas Individuales</div>
+          <div class="hotel-price-row"><div class="hotel-price">$700</div><div class="hotel-price-unit">MXN / noche</div></div>
+          <div class="hotel-capacity"><i class="fas fa-users"></i> 2 personas</div>
+          <ul class="hotel-amenities">
+            <li><i class="fas fa-bed"></i> 2 camas individuales</li>
+            <li><i class="fas fa-bath"></i> Baño privado</li>
+            <li><i class="fas fa-shower"></i> Agua caliente</li>
+            <li><i class="fas fa-tv"></i> Smart TV</li>
+            <li><i class="fas fa-wifi"></i> Telmex + Starlink</li>
+            <li><i class="fas fa-fan"></i> Ventilador de techo</li>
+          </ul>
+          <a href="https://wa.me/+5219541327997?text=Hola,%20quiero%20reservar%202%20Camas%20Individuales%20$700%20MXN" target="_blank" class="btn-hotel"><i class="fab fa-whatsapp"></i> Reservar habitación</a>
+        </div>
+      </div>
+      <div class="hotel-card reveal">
+        <div class="hotel-img" id="himg3" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-26-at-11.12.01-PM.jpeg');"></div>
+        <div class="hotel-thumbs">
+          <div class="h-thumb active" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-26-at-11.12.01-PM.jpeg')" data-target="himg3"></div>
+          <div class="h-thumb" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-26-at-11.12.01-PM-1.jpeg')" data-target="himg3"></div>
+          <div class="h-thumb" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-26-at-11.12.01-PM-2.jpeg')" data-target="himg3"></div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-name">Cama King Size</div>
+          <div class="hotel-price-row"><div class="hotel-price">$800</div><div class="hotel-price-unit">MXN / noche</div></div>
+          <div class="hotel-capacity"><i class="fas fa-users"></i> 2 personas</div>
+          <ul class="hotel-amenities">
+            <li><i class="fas fa-bed"></i> King Size</li>
+            <li><i class="fas fa-bath"></i> Baño privado</li>
+            <li><i class="fas fa-snowflake"></i> Aire acond.</li>
+            <li><i class="fas fa-wifi"></i> WiFi</li>
+            <li><i class="fas fa-couch"></i> Sofá + frigobar</li>
+            <li><i class="fas fa-shower"></i> Agua caliente</li>
+          </ul>
+          <a href="https://wa.me/+5219541327997?text=Hola,%20quiero%20reservar%20King%20Size%20$800%20MXN" target="_blank" class="btn-hotel"><i class="fab fa-whatsapp"></i> Reservar habitación</a>
+        </div>
+      </div>
+      <div class="hotel-card reveal">
+        <div class="hotel-img" id="himg4" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-27-at-8.34.34-PM.jpeg');"></div>
+        <div class="hotel-thumbs">
+          <div class="h-thumb active" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-27-at-8.34.34-PM.jpeg')" data-target="himg4"></div>
+          <div class="h-thumb" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-27-at-8.34.35-PM.jpeg')" data-target="himg4"></div>
+          <div class="h-thumb" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-27-at-8.34.35-PM-1.jpeg')" data-target="himg4"></div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-name">3 Camas · 5 personas</div>
+          <div class="hotel-price-row"><div class="hotel-price">$1,400</div><div class="hotel-price-unit">MXN / noche</div></div>
+          <div class="hotel-capacity"><i class="fas fa-users"></i> Hasta 5 personas</div>
+          <ul class="hotel-amenities">
+            <li><i class="fas fa-bed"></i> 2 matrim. + 1 indiv.</li>
+            <li><i class="fas fa-bath"></i> Baño privado</li>
+            <li><i class="fas fa-snowflake"></i> Aire acond.</li>
+            <li><i class="fas fa-wifi"></i> Telmex + Starlink</li>
+            <li><i class="fas fa-tv"></i> Smart TV</li>
+            <li><i class="fas fa-shower"></i> Agua caliente</li>
+          </ul>
+          <a href="https://wa.me/+5219541327997?text=Hola,%20quiero%20reservar%203%20Camas%205%20personas%20$1,400%20MXN" target="_blank" class="btn-hotel"><i class="fab fa-whatsapp"></i> Reservar habitación</a>
+        </div>
+      </div>
+      <div class="hotel-card reveal">
+        <div class="hotel-img" id="himg5" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-27-at-8.35.58-PM.jpeg');"></div>
+        <div class="hotel-thumbs">
+          <div class="h-thumb active" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-27-at-8.35.58-PM.jpeg')" data-target="himg5"></div>
+          <div class="h-thumb" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-27-at-8.35.58-PM-1.jpeg')" data-target="himg5"></div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-name">2 Matrimoniales · 4 personas</div>
+          <div class="hotel-price-row"><div class="hotel-price">$1,200</div><div class="hotel-price-unit">MXN / noche</div></div>
+          <div class="hotel-capacity"><i class="fas fa-users"></i> Hasta 4 personas</div>
+          <ul class="hotel-amenities">
+            <li><i class="fas fa-bed"></i> 2 camas matrimoniales</li>
+            <li><i class="fas fa-bath"></i> Baño privado</li>
+            <li><i class="fas fa-snowflake"></i> Aire acond.</li>
+            <li><i class="fas fa-wifi"></i> Telmex + Starlink</li>
+            <li><i class="fas fa-tv"></i> Smart TV</li>
+            <li><i class="fas fa-shower"></i> Agua caliente</li>
+          </ul>
+          <a href="https://wa.me/+5219541327997?text=Hola,%20quiero%20reservar%202%20Matrimoniales%204%20personas%20$1,200%20MXN" target="_blank" class="btn-hotel"><i class="fab fa-whatsapp"></i> Reservar habitación</a>
+        </div>
+      </div>
+      <div class="hotel-card reveal">
+        <div class="hotel-img" id="himg6" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-27-at-8.36.22-PM.jpeg');"></div>
+        <div class="hotel-thumbs">
+          <div class="h-thumb active" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-27-at-8.36.22-PM.jpeg')" data-target="himg6"></div>
+          <div class="h-thumb" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-27-at-8.36.22-PM-1.jpeg')" data-target="himg6"></div>
+          <div class="h-thumb" style="background-image:url('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-27-at-8.36.23-PM.jpeg')" data-target="himg6"></div>
+        </div>
+        <div class="hotel-body">
+          <div class="hotel-name">Familiar Grande</div>
+          <div class="hotel-price-row"><div class="hotel-price">$1,300</div><div class="hotel-price-unit">MXN / noche</div></div>
+          <div class="hotel-capacity"><i class="fas fa-users"></i> Hasta 5 personas</div>
+          <ul class="hotel-amenities">
+            <li><i class="fas fa-bed"></i> 2 matrim. + 1 indiv.</li>
+            <li><i class="fas fa-couch"></i> Sofá cama extra</li>
+            <li><i class="fas fa-tv"></i> Smart TV</li>
+            <li><i class="fas fa-wifi"></i> Telmex + Starlink</li>
+            <li><i class="fas fa-shower"></i> Agua caliente</li>
+            <li><i class="fas fa-fan"></i> Ventilador de techo</li>
+          </ul>
+          <a href="https://wa.me/+5219541327997?text=Hola,%20quiero%20reservar%20Familiar%20Grande%20$1,300%20MXN" target="_blank" class="btn-hotel"><i class="fab fa-whatsapp"></i> Reservar habitación</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bioluminiscencia -->
+<section class="section bio-section" id="bioluminiscencia">
+  <div class="container">
+    <div class="bio-grid">
+      <div class="bio-visual reveal-left">
+        <div class="bio-img-wrap">
+          <img src="https://puertoescondidomex.com/wp-content/uploads/2026/02/35216-1.jpg" alt="Bioluminiscencia Puerto Escondido">
+        </div>
+        <div class="bio-float-badge">
+          <div class="num">$750</div>
+          <div class="lbl">MXN por persona</div>
+        </div>
+      </div>
+      <div class="bio-content reveal-right">
+        <div class="section-eye">Tour nocturno</div>
+        <h2>Nada entre luces<br><em>del fondo del mar</em></h2>
+        <p>El plancton bioluminiscente de Puerto Escondido emite una luz azul mágica con cada movimiento. Nadar en esas aguas oscuras y ver tu propio cuerpo brillar es una experiencia que no existe en muchos lugares del mundo.</p>
+        <div class="bio-features-list">
+          <div class="bio-feat">
+            <div class="bio-feat-icon"><i class="fas fa-moon"></i></div>
+            <div class="bio-feat-text">
+              <h4>Tour exclusivamente nocturno</h4>
+              <p>Mejor en noches de luna nueva para máxima visibilidad del plancton</p>
+            </div>
+          </div>
+          <div class="bio-feat">
+            <div class="bio-feat-icon"><i class="fas fa-shield-alt"></i></div>
+            <div class="bio-feat-text">
+              <h4>Seguridad certificada</h4>
+              <p>Chalecos salvavidas, guías especializados y equipo de emergencia</p>
+            </div>
+          </div>
+          <div class="bio-feat">
+            <div class="bio-feat-icon"><i class="fas fa-clock"></i></div>
+            <div class="bio-feat-text">
+              <h4>2–3 horas de experiencia</h4>
+              <p>Temporada ideal: mayo a octubre. Reservación anticipada recomendada</p>
+            </div>
+          </div>
+        </div>
+        <div class="bio-price-cta">
+          <div>
+            <div class="price">$750 MXN</div>
+            <div class="price-sub">por persona · Reserva con $200 MXN</div>
+          </div>
+          <a href="https://wa.me/+5219541327997?text=Hola,%20quiero%20reservar%20el%20Tour%20Bioluminiscencia%20$750%20MXN" target="_blank" class="btn-bio">
+            <i class="fab fa-whatsapp"></i> Reservar tour
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Playas -->
+<section class="section section-dark" id="playas">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-eye">Atracciones incluidas</div>
+      <h2>5 playas que te van a quitar el aliento</h2>
+      <p>Incluidas en el Tour Tortugas y Playas y el Tour Playas. Cada una con su propia magia.</p>
+    </div>
+    <div class="beaches-grid">
+      <div class="beach-card reveal">
+        <div class="beach-vid-wrap">
+          <video muted loop playsinline><source src="https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Video-2026-02-21-at-8.24.56-PM.mp4" type="video/mp4"></video>
+          <div class="beach-vid-overlay"><div class="play-btn" onclick="openVModal('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Video-2026-02-21-at-8.24.56-PM.mp4')"><i class="fas fa-play"></i></div></div>
+          <div class="beach-num">01</div>
+        </div>
+        <div class="beach-body">
+          <div class="beach-title">Manzanillo y Puerto Angelito</div>
+          <div class="beach-desc">Aguas tranquilas perfectas para familias y snorkeling en pareja.</div>
+          <div class="beach-tags"><span class="beach-tag">Snorkeling</span><span class="beach-tag">Familiar</span></div>
+        </div>
+      </div>
+      <div class="beach-card reveal">
+        <div class="beach-vid-wrap">
+          <video muted loop playsinline><source src="https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Video-2026-02-21-at-8.24.56-PM-1.mp4" type="video/mp4"></video>
+          <div class="beach-vid-overlay"><div class="play-btn" onclick="openVModal('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Video-2026-02-21-at-8.24.56-PM-1.mp4')"><i class="fas fa-play"></i></div></div>
+          <div class="beach-num">02</div>
+        </div>
+        <div class="beach-body">
+          <div class="beach-title">Carrizalillo</div>
+          <div class="beach-desc">Una de las playas más bellas de México. Paraíso escondido que vale cada escalón.</div>
+          <div class="beach-tags"><span class="beach-tag">Surf</span><span class="beach-tag">Vistas</span></div>
+        </div>
+      </div>
+      <div class="beach-card reveal">
+        <div class="beach-vid-wrap">
+          <video muted loop playsinline><source src="https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Video-2026-02-21-at-8.24.56-PM-2.mp4" type="video/mp4"></video>
+          <div class="beach-vid-overlay"><div class="play-btn" onclick="openVModal('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Video-2026-02-21-at-8.24.56-PM-2.mp4')"><i class="fas fa-play"></i></div></div>
+          <div class="beach-num">03</div>
+        </div>
+        <div class="beach-body">
+          <div class="beach-title">Cueva del Amor</div>
+          <div class="beach-desc">Formación rocosa en forma de corazón. Mirador de tortugas marinas al atardecer.</div>
+          <div class="beach-tags"><span class="beach-tag">Tortugas</span><span class="beach-tag">Romántico</span></div>
+        </div>
+      </div>
+      <div class="beach-card reveal">
+        <div class="beach-vid-wrap">
+          <video muted loop playsinline><source src="https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Video-2026-02-21-at-8.24.57-PM.mp4" type="video/mp4"></video>
+          <div class="beach-vid-overlay"><div class="play-btn" onclick="openVModal('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Video-2026-02-21-at-8.24.57-PM.mp4')"><i class="fas fa-play"></i></div></div>
+          <div class="beach-num">04</div>
+        </div>
+        <div class="beach-body">
+          <div class="beach-title">Playa Coral</div>
+          <div class="beach-desc">Paraíso para buceadores. Arrecifes de coral y peces tropicales en aguas cristalinas.</div>
+          <div class="beach-tags"><span class="beach-tag">Buceo</span><span class="beach-tag">Coral</span></div>
+        </div>
+      </div>
+      <div class="beach-card reveal">
+        <div class="beach-vid-wrap">
+          <video muted loop playsinline><source src="https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Video-2026-02-21-at-8.24.57-PM-1.mp4" type="video/mp4"></video>
+          <div class="beach-vid-overlay"><div class="play-btn" onclick="openVModal('https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Video-2026-02-21-at-8.24.57-PM-1.mp4')"><i class="fas fa-play"></i></div></div>
+          <div class="beach-num">05</div>
+        </div>
+        <div class="beach-body">
+          <div class="beach-title">Playa Bacocho</div>
+          <div class="beach-desc">Las puestas de sol más espectaculares de Oaxaca. Perfecta para caminatas románticas.</div>
+          <div class="beach-tags"><span class="beach-tag">Atardecer</span><span class="beach-tag">Fotos</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="beaches-cta-row reveal">
+      <div>
+        <h3>¿Listo para explorar las 5 playas?</h3>
+        <p>Reserva el Tour Tortugas y Playas o el Tour Playas y recórrelas todas en una sola salida con guía local.</p>
+      </div>
+      <div class="cta-btn-group">
+        <a href="https://wa.me/+5219541327997?text=Hola,%20quiero%20reservar%20el%20Tour%20Tortugas%20y%20Playas%20para%20conocer%20las%205%20playas" target="_blank" class="btn-cta-wa"><i class="fab fa-whatsapp"></i> Reservar Tour Playas</a>
+        <a href="#tours" class="btn-cta-ghost"><i class="fas fa-list"></i> Ver todos los tours</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Gallery 3x2 uniform -->
+<section class="section section-darker" id="galeria">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-eye">Galería</div>
+      <h2>Momentos reales de nuestros viajeros</h2>
+      <p>Sin filtros. Así de espectacular es Puerto Escondido.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="g-item reveal">
+        <img src="https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-23-at-8.35.20-PM.jpeg" alt="Atardecer" loading="lazy">
+        <div class="g-overlay"><p>Atardecer desde la playa</p></div>
+      </div>
+      <div class="g-item reveal">
+        <img src="https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-23-at-8.35.19-PM-3-2.jpeg" alt="Ballena jorobada" loading="lazy">
+        <div class="g-overlay"><p>Ballena jorobada en temporada</p></div>
+      </div>
+      <div class="g-item reveal">
+        <img src="https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-23-at-8.35.18-PM-1-1.jpeg" alt="Lancha" loading="lazy">
+        <div class="g-overlay"><p>Nuestras embarcaciones</p></div>
+      </div>
+      <div class="g-item reveal">
+        <img src="https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-29-at-4.55.46-PM.jpeg" alt="Tour delfines" loading="lazy">
+        <div class="g-overlay"><p>Tour de delfines</p></div>
+      </div>
+      <div class="g-item reveal">
+        <img src="https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-25-at-3.22.23-PM-1-1-1.jpeg" alt="Playa" loading="lazy">
+        <div class="g-overlay"><p>Playas de Puerto Escondido</p></div>
+      </div>
+      <div class="g-item reveal">
+        <img src="https://puertoescondidomex.com/wp-content/uploads/2026/02/WhatsApp-Image-2026-01-29-at-4.54.41-PM.jpeg" alt="Pesca deportiva" loading="lazy">
+        <div class="g-overlay"><p>Pesca deportiva</p></div>
+      </div>
+    </div>
+
+    <!-- Whale CTA Banner -->
+    <div class="whale-cta reveal">
+      <div class="whale-cta-bg"></div>
+      <div class="whale-cta-texture"></div>
+      <div class="whale-cta-gradient"></div>
+      <div class="whale-cta-content">
+        <div class="whale-cta-left">
+          <div class="whale-cta-eyebrow"><i class="fas fa-water"></i> Temporada de ballenas activa</div>
+          <div class="whale-cta-title">Avista ballenas jorobadas<br>en <em>mar abierto</em></div>
+          <p class="whale-cta-sub">Cada salida es única. Nuestros guías te llevan hasta donde las ballenas danzan libre en el Pacífico oaxaqueño. Una experiencia que nunca olvidarás.</p>
+          <a href="https://wa.me/+5219541327997?text=Hola,%20quiero%20reservar%20un%20tour%20de%20ballenas%20en%20Puerto%20Escondido" target="_blank" class="btn-whale-cta" style="margin-top:28px;display:inline-flex">
+            <i class="fab fa-whatsapp"></i> Reservar tour de ballenas
+          </a>
+        </div>
+        <div class="whale-cta-right">
+          <span class="whale-icon"><i class="fas fa-water"></i></span>
+          <div class="whale-cta-price">$700</div>
+          <div class="whale-cta-price-label">MXN por persona</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How to Book -->
+<section class="section section-dark" id="reservar">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-eye">Reservaciones</div>
+      <h2>Reservar es muy fácil</h2>
+      <p>Solo 3 pasos y en menos de 5 minutos tienes tu lugar asegurado.</p>
+    </div>
+    <div class="steps-row">
+      <div class="step-box reveal">
+        <div class="step-num">1</div>
+        <h3>Escríbenos por WhatsApp</h3>
+        <p>Cuéntanos qué tour o habitación te interesa. Te respondemos de inmediato con disponibilidad y horarios.</p>
+        <a href="https://wa.me/+5219541327997?text=Hola,%20quiero%20información%20sobre%20tours%20en%20Puerto%20Escondido" target="_blank" class="btn-bio" style="font-size:.82rem;padding:12px 20px">
+          <i class="fab fa-whatsapp"></i> Abrir WhatsApp
+        </a>
+      </div>
+      <div class="step-box reveal">
+        <div class="step-num">2</div>
+        <h3>Aparta tu lugar</h3>
+        <p>Confirma tu reserva con solo <strong style="color:var(--teal)">$200 MXN por persona</strong>. El resto lo pagas el día del tour o al llegar al hotel.</p>
+      </div>
+      <div class="step-box reveal">
+        <div class="step-num">3</div>
+        <h3>¡Disfruta tu aventura!</h3>
+        <p>Preséntate a la hora acordada. Nosotros nos encargamos de todo lo demás. Tú solo disfruta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="logo-badge"><i class="fas fa-anchor"></i></div>
+          <div class="logo-text-group">
+            <h1 style="font-size:1.1rem;margin:0;font-family:'Syne',sans-serif">Viva Puerto Escondido</h1>
+            <span>Tours Premium &amp; Hospedaje</span>
+          </div>
+        </div>
+        <p>Especialistas en tours marinos de alta calidad y hospedaje frente a la playa en Puerto Escondido, Oaxaca. Desde delfines hasta bioluminiscencia, te damos experiencias que no olvidarás.</p>
+        <div class="footer-socials">
+          <a href="https://www.facebook.com/profile.php?id=61583493535373" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://wa.me/+5219541327997" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Tours disponibles</h4>
+        <ul>
+          <li><a href="https://wa.me/+5219541327997?text=Quiero%20el%20Tour%20Delfines" target="_blank"><i class="fas fa-chevron-right"></i> Tour Delfines · $700</a></li>
+          <li><a href="https://wa.me/+5219541327997?text=Quiero%20el%20Tour%20Bioluminiscencia" target="_blank"><i class="fas fa-chevron-right"></i> Bioluminiscencia · $750</a></li>
+          <li><a href="https://wa.me/+5219541327997?text=Quiero%20Tour%20Tortugas%20y%20Playas" target="_blank"><i class="fas fa-chevron-right"></i> Tortugas y Playas · $2,000</a></li>
+          <li><a href="https://wa.me/+5219541327997?text=Quiero%20el%20Tour%20Playas" target="_blank"><i class="fas fa-chevron-right"></i> Tour Playas · $1,500</a></li>
+          <li><a href="https://wa.me/+5219541327997?text=Quiero%20Pesca%20Deportiva%203h" target="_blank"><i class="fas fa-chevron-right"></i> Pesca 3h · $6,000</a></li>
+          <li><a href="https://wa.me/+5219541327997?text=Quiero%20Pesca%20Deportiva%205h" target="_blank"><i class="fas fa-chevron-right"></i> Pesca 5h · $7,000</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <div class="contact-row">
+          <i class="fas fa-map-marker-alt"></i>
+          <p><strong>Frente a Playa Principal</strong><br>Puerto Escondido, Oaxaca, México</p>
+        </div>
+        <div class="contact-row">
+          <i class="fab fa-whatsapp"></i>
+          <p><strong>+52 1 954 132 7997</strong><br>WhatsApp · Llamadas</p>
+        </div>
+        <div class="contact-row">
+          <i class="fas fa-clock"></i>
+          <p><strong>Lunes a Domingo</strong><br>6:00 AM – 10:00 PM</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Viva Puerto Escondido · Todos los derechos reservados.</p>
+      <p>Tours y hospedaje premium en Puerto Escondido, Oaxaca.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<div class="wa-float">
+  <div class="wa-label">¡Reserva ahora!</div>
+  <a href="https://wa.me/+5219541327997?text=Hola,%20quiero%20reservar%20un%20tour%20o%20habitación%20en%20Puerto%20Escondido%20🐬" target="_blank" aria-label="WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+</div>
+
+<!-- Video Modal -->
+<div class="v-modal" id="vModal">
+  <button class="v-modal-close" id="vModalClose"><i class="fas fa-times"></i></button>
+  <div class="v-modal-inner">
+    <video id="modalVid" controls playsinline></video>
+  </div>
+</div>
+
+<script>
+/* ===== THEME (default: light) ===== */
+(function(){
+  var saved = localStorage.getItem('vpe-theme') || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+})();
+
+function applyTheme(theme){
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('vpe-theme', theme);
+  // sync icon state
+  document.querySelectorAll('.icon-moon').forEach(function(el){ el.style.display = theme === 'dark' ? 'block' : 'none'; });
+  document.querySelectorAll('.icon-sun').forEach(function(el){ el.style.display = theme === 'light' ? 'block' : 'none'; });
+}
+
+// init icons
+(function(){
+  var t = document.documentElement.getAttribute('data-theme') || 'light';
+  applyTheme(t);
+})();
+
+document.getElementById('themeToggle').addEventListener('click', function(){
+  var cur = document.documentElement.getAttribute('data-theme');
+  applyTheme(cur === 'dark' ? 'light' : 'dark');
+});
+document.getElementById('themeToggleMobile').addEventListener('click', function(){
+  var cur = document.documentElement.getAttribute('data-theme');
+  applyTheme(cur === 'dark' ? 'light' : 'dark');
+});
+
+/* ===== HERO SLIDER ===== */
+var sliderData = [
+  {
+    badge: '<span class="slider-badge popular"><i class="fas fa-star"></i> Más popular</span>',
+    title: 'Tour Delfines',
+    desc: 'Avistamiento 100% garantizado. 2–3 horas en mar abierto con guía certificado, fotos y video incluidos.',
+    price: '$700',
+    priceUnit: 'MXN por persona',
+    wa: 'https://wa.me/+5219541327997?text=Hola,%20quiero%20reservar%20el%20Tour%20Delfines%20de%20$700%20MXN'
+  },
+  {
+    badge: '<span class="slider-badge family"><i class="fas fa-users"></i> Familiar</span>',
+    title: 'Tortugas y Playas',
+    desc: 'Visita 5 playas increíbles y avista tortugas marinas en su hábitat natural. Perfecto para toda la familia.',
+    price: '$2,000',
+    priceUnit: 'MXN · 1–5 personas',
+    wa: 'https://wa.me/+5219541327997?text=Hola,%20quiero%20reservar%20Tour%20Tortugas%20y%20Playas%20$2,000%20MXN'
+  },
+  {
+    badge: '<span class="slider-badge" style="background:var(--coral);color:#050E1A"><i class="fas fa-fish"></i> Premium</span>',
+    title: 'Pesca Deportiva 5h',
+    desc: '5 horas de aventura en alta mar. Posibilidad de capturar marlín con equipo premium y guía experto.',
+    price: '$7,000',
+    priceUnit: 'MXN · 1–5 personas',
+    wa: 'https://wa.me/+5219541327997?text=Hola,%20quiero%20reservar%20Pesca%20Deportiva%205h%20$7,000%20MXN'
+  }
+];
+
+var currentSlide = 0;
+var sliderImages = document.querySelectorAll('.slider-img-wrap img');
+
+function renderSlider(idx){
+  var d = sliderData[idx];
+  var dots = '';
+  sliderData.forEach(function(_,i){
+    dots += '<button class="slider-dot' + (i===idx?' active':'') + '" data-i="'+i+'"></button>';
+  });
+  document.getElementById('sliderBody').innerHTML =
+    d.badge +
+    '<div class="slider-title">' + d.title + '</div>' +
+    '<div class="slider-desc">' + d.desc + '</div>' +
+    '<div class="slider-footer">' +
+      '<div><div class="slider-price">' + d.price + '</div><div class="slider-price-unit">' + d.priceUnit + '</div></div>' +
+      '<div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px">' +
+        '<a href="' + d.wa + '" target="_blank" class="btn-slider-wa"><i class="fab fa-whatsapp"></i> Reservar</a>' +
+        '<div class="slider-dots">' + dots + '</div>' +
+      '</div>' +
+    '</div>';
+
+  // bind dot clicks
+  document.querySelectorAll('.slider-dot').forEach(function(btn){
+    btn.addEventListener('click', function(){ goSlide(parseInt(this.dataset.i)); });
+  });
+
+  // images
+  sliderImages.forEach(function(img, i){
+    img.classList.toggle('active', i === idx);
+  });
+}
+
+function goSlide(idx){
+  currentSlide = (idx + sliderData.length) % sliderData.length;
+  renderSlider(currentSlide);
+}
+
+document.getElementById('sliderNext').addEventListener('click', function(){ goSlide(currentSlide + 1); });
+document.getElementById('sliderPrev').addEventListener('click', function(){ goSlide(currentSlide - 1); });
+
+renderSlider(0);
+
+// Auto-advance
+setInterval(function(){ goSlide(currentSlide + 1); }, 5000);
+
+/* ===== PARTICLES ===== */
+(function(){
+  var container = document.getElementById('particles');
+  for(var i=0;i<28;i++){
+    var p = document.createElement('div');
+    p.className = 'particle';
+    var size = Math.random()*4+2;
+    p.style.cssText = 'width:'+size+'px;height:'+size+'px;left:'+Math.random()*100+'%;animation-duration:'+(Math.random()*20+12)+'s;animation-delay:'+(Math.random()*15)+'s;box-shadow:0 0 '+(size*3)+'px rgba(0,201,177,0.8);';
+    container.appendChild(p);
+  }
+})();
+
+/* ===== HEADER SCROLL ===== */
+var header = document.getElementById('header');
+window.addEventListener('scroll', function(){
+  header.classList.toggle('scrolled', window.scrollY > 60);
+}, {passive:true});
+
+/* ===== HAMBURGER ===== */
+var ham = document.getElementById('hamburger');
+var mobNav = document.getElementById('mobileNav');
+var mobToggle = document.getElementById('themeToggleMobile');
+ham.addEventListener('click', function(){
+  ham.classList.toggle('open');
+  mobNav.classList.toggle('open');
+  document.body.style.overflow = mobNav.classList.contains('open') ? 'hidden' : '';
+});
+document.querySelectorAll('.nav-link-m').forEach(function(a){
+  a.addEventListener('click', function(){
+    ham.classList.remove('open');
+    mobNav.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+});
+
+// show mobile theme toggle on small screens
+function syncMobileToggle(){
+  mobToggle.style.display = window.innerWidth <= 768 ? 'flex' : 'none';
+}
+syncMobileToggle();
+window.addEventListener('resize', syncMobileToggle);
+
+/* ===== SMOOTH SCROLL ===== */
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(e){
+    var target = document.querySelector(this.getAttribute('href'));
+    if(!target) return;
+    e.preventDefault();
+    window.scrollTo({top: target.getBoundingClientRect().top + window.scrollY - 80, behavior:'smooth'});
+  });
+});
+
+/* ===== HOTEL GALLERY THUMBS ===== */
+document.querySelectorAll('.h-thumb').forEach(function(thumb){
+  thumb.addEventListener('click', function(){
+    var targetId = this.dataset.target;
+    var imgEl = document.getElementById(targetId);
+    if(imgEl) imgEl.style.backgroundImage = this.style.backgroundImage;
+    this.closest('.hotel-thumbs').querySelectorAll('.h-thumb').forEach(function(t){ t.classList.remove('active'); });
+    this.classList.add('active');
+  });
+});
+
+/* ===== BEACH VIDEOS ===== */
+document.querySelectorAll('.beach-vid-wrap video').forEach(function(v){
+  v.muted = true; v.loop = true; v.play().catch(function(){});
+});
+
+/* ===== VIDEO MODAL ===== */
+var vModal = document.getElementById('vModal');
+var modalVid = document.getElementById('modalVid');
+document.getElementById('vModalClose').addEventListener('click', closeVModal);
+vModal.addEventListener('click', function(e){ if(e.target===this) closeVModal(); });
+document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeVModal(); });
+
+function openVModal(src){
+  modalVid.src = src;
+  vModal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  modalVid.play();
+}
+function closeVModal(){
+  vModal.classList.remove('active');
+  document.body.style.overflow = '';
+  modalVid.pause();
+  modalVid.src = '';
+}
+
+/* ===== REVEAL ===== */
+var revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+var observer = new IntersectionObserver(function(entries){
+  entries.forEach(function(entry){
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+revealEls.forEach(function(el){ observer.observe(el); });
+</script>
+</body>
+</html>
